@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Timeline from "./pages/Timeline";
 import Stats from "./pages/Stats";
 import FriendDetails from "./pages/FriendDetails";
+import NotFound from "./pages/NotFound"; 
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -14,28 +15,29 @@ import { TimelineProvider } from "./context/TimelineContext";
 function App() {
   return (
     <TimelineProvider>
-
-      {/* 🔥 Full Layout */}
+      {/*  Full Layout */}
       <div className="flex flex-col min-h-screen">
 
-        {/* 🔝 Navbar */}
+        {/* Navbar */}
         <Navbar />
 
-        {/* 🔄 Page Content */}
+        {/* Page Content */}
         <main className="flex-1">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/timeline" element={<Timeline />} />
             <Route path="/stats" element={<Stats />} />
             <Route path="/friend/:id" element={<FriendDetails />} />
+
+            {/* 404 Route (MUST BE LAST) */}
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
 
-        {/*Footer (All Pages) */}
+        {/* Footer (All Pages) */}
         <Footer />
 
       </div>
-
     </TimelineProvider>
   );
 }

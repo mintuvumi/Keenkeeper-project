@@ -1,53 +1,73 @@
+import { useState, useEffect } from "react";
+
 import FriendCard from "../components/FriendCard";
 import HeroSection from "../components/HeroSection";
-import Footer from "../components/Footer";
-import friends from "../data/friends";
-
 
 export default function Home() {
-  const friends = [
-    {
-      id: 1,
-      name: "Rahim",
-      picture: "https://i.pravatar.cc/100?img=1",
-      days_since_contact: 62,
-      status: "almost-due",
-      tags: ["work"],
-    },
-    {
-      id: 2,
-      name: "Karim",
-      picture: "https://i.pravatar.cc/100?img=2",
-      days_since_contact: 62,
-      status: "overdue",
-      tags: ["family"],
-    },
-    {
-      id: 3,
-      name: "Sakib",
-      picture: "https://i.pravatar.cc/100?img=3",
-      days_since_contact: 62,
-      status: "overdue",
-      tags: ["work"],
-    },
-    {
-      id: 4,
-      name: "Hasan",
-      picture: "https://i.pravatar.cc/100?img=4",
-      days_since_contact: 62,
-      status: "overdue",
-      tags: ["hobby", "travel"],
-    },
+  const [friends, setFriends] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-    ...Array.from({ length: 8 }, (_, i) => ({
-      id: i + 5,
-      name: "Friend " + (i + 5),
-      picture: `https://i.pravatar.cc/100?img=${i + 5}`,
-      days_since_contact: 62,
-      status: i % 2 === 0 ? "overdue" : "almost-due",
-      tags: ["work"],
-    })),
-  ];
+  useEffect(() => {
+    setLoading(true);
+
+    // simulate API call
+    setTimeout(() => {
+      const data = [
+        {
+          id: 1,
+          name: "Rahim",
+          picture: "https://i.pravatar.cc/100?img=1",
+          days_since_contact: 62,
+          status: "almost-due",
+          tags: ["work"],
+        },
+        {
+          id: 2,
+          name: "Karim",
+          picture: "https://i.pravatar.cc/100?img=2",
+          days_since_contact: 62,
+          status: "overdue",
+          tags: ["family"],
+        },
+        {
+          id: 3,
+          name: "Sakib",
+          picture: "https://i.pravatar.cc/100?img=3",
+          days_since_contact: 62,
+          status: "overdue",
+          tags: ["work"],
+        },
+        {
+          id: 4,
+          name: "Hasan",
+          picture: "https://i.pravatar.cc/100?img=4",
+          days_since_contact: 62,
+          status: "overdue",
+          tags: ["hobby", "travel"],
+        },
+        ...Array.from({ length: 8 }, (_, i) => ({
+          id: i + 5,
+          name: "Friend " + (i + 5),
+          picture: `https://i.pravatar.cc/100?img=${i + 5}`,
+          days_since_contact: 62,
+          status: i % 2 === 0 ? "overdue" : "almost-due",
+          tags: ["work"],
+        })),
+      ];
+
+      setFriends(data);
+      setLoading(false);
+    }, 1200);
+  }, []);
+
+  // Loading 
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -56,7 +76,6 @@ export default function Home() {
 
       {/* Friends Section */}
       <div className="px-4 md:px-6 lg:px-8 py-6">
-
         <div className="mb-6">
           <h2 className="text-xl md:text-2xl font-bold text-gray-800">
             Your Friends
@@ -71,11 +90,7 @@ export default function Home() {
             <FriendCard key={friend.id} friend={friend} />
           ))}
         </div>
-
       </div>
-
-     
-      
     </>
   );
 }
