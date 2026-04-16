@@ -4,20 +4,35 @@ import Timeline from "./pages/Timeline";
 import Stats from "./pages/Stats";
 import Navbar from "./components/Navbar";
 import FriendDetails from "./pages/FriendDetails";
+import Footer from "./components/Footer"; // ✅ add this
 
-// ✅ add this
+// ✅ context
 import { TimelineProvider } from "./context/TimelineContext";
 
 function App() {
   return (
     <TimelineProvider>
+
+      {/* Navbar */}
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/timeline" element={<Timeline />} />
-        <Route path="/stats" element={<Stats />} />
-        <Route path="/friend/:id" element={<FriendDetails />} />
-      </Routes>
+
+      {/* Pages */}
+      <div className="min-h-screen flex flex-col">
+
+        <div className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/timeline" element={<Timeline />} />
+            <Route path="/stats" element={<Stats />} />
+            <Route path="/friend/:id" element={<FriendDetails />} />
+          </Routes>
+        </div>
+
+        {/* ✅ Footer সব page এ নিচে থাকবে */}
+        <Footer />
+
+      </div>
+
     </TimelineProvider>
   );
 }
