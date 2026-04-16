@@ -5,9 +5,12 @@ import Stats from "./pages/Stats";
 import Navbar from "./components/Navbar";
 import FriendDetails from "./pages/FriendDetails";
 
+// ✅ add this
+import { TimelineProvider } from "./context/TimelineContext";
+
 function App() {
   return (
-    <>
+    <TimelineProvider>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -15,7 +18,7 @@ function App() {
         <Route path="/stats" element={<Stats />} />
         <Route path="/friend/:id" element={<FriendDetails />} />
       </Routes>
-    </>
+    </TimelineProvider>
   );
 }
 

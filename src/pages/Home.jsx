@@ -1,4 +1,8 @@
 import FriendCard from "../components/FriendCard";
+import HeroSection from "../components/HeroSection";
+import Footer from "../components/Footer";
+import friends from "../data/friends";
+
 
 export default function Home() {
   const friends = [
@@ -35,7 +39,6 @@ export default function Home() {
       tags: ["hobby", "travel"],
     },
 
-    // 8 more auto cards = total 12
     ...Array.from({ length: 8 }, (_, i) => ({
       id: i + 5,
       name: "Friend " + (i + 5),
@@ -47,19 +50,32 @@ export default function Home() {
   ];
 
   return (
-    <div className="p-4 bg-gray-100 min-h-screen">
+    <>
+      {/* 🔥 Hero Section */}
+      <HeroSection />
 
-      {/* Title */}
-      <h2 className="text-2xl font-bold mb-4">
-        Your Friends
-      </h2>
+      {/* 🔥 Friends Section */}
+      <div className="px-4 md:px-6 lg:px-8 py-6">
 
-      {/* Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {friends.map((friend) => (
-          <FriendCard key={friend.id} friend={friend} />
-        ))}
+        <div className="mb-6">
+          <h2 className="text-xl md:text-2xl font-bold text-gray-800">
+            Your Friends
+          </h2>
+          <p className="text-sm text-gray-500">
+            Manage and keep track of your important connections
+          </p>
+        </div>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6">
+          {friends.map((friend) => (
+            <FriendCard key={friend.id} friend={friend} />
+          ))}
+        </div>
+
       </div>
-    </div>
+
+      {/* 🔥 Footer */}
+      <Footer />
+    </>
   );
 }

@@ -1,9 +1,12 @@
 import { useParams, useNavigate } from "react-router-dom";
-import friends from "../data/friends.json";
+import friends from "../data/friends";
+import { useTimeline } from "../context/TimelineContext";
+import { toast } from "react-toastify";
 
 export default function FriendDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { addEntry } = useTimeline();
 
   const friend = friends.find(f => f.id === parseInt(id));
 
@@ -11,48 +14,150 @@ export default function FriendDetails() {
     return <h1 className="p-6">Friend Not Found</h1>;
   }
 
-  return (
-    <div className="p-6 max-w-xl mx-auto">
+  // ✅ handle click
+  const handleAction = (type) => {
+    addEntry(type, friend.name);
+    toast.success(`${type} added to timeline`);
+  };
 
+  return (
+    <div className="p-6 max-w-5xl mx-auto">
+
+      {/* Back Button */}
       <button 
         onClick={() => navigate(-1)} 
-        className="btn btn-sm mb-4"
+        className="btn btn-sm mb-6"
       >
         ← Back
       </button>
 
-      <div className="card bg-base-200 p-6 text-center">
+      <div className="grid md:grid-cols-3 gap-6">
 
-        <img
-          src={friend.picture}
-          className="w-24 h-24 rounded-full mx-auto mb-4"
-        />
+        {/* LEFT CARD */}
+        <div className="card bg-base-200 p-6 text-center shadow flex flex-col items-center">
 
-        <h2 className="text-2xl font-bold">{friend.name}</h2>
-        <p className="text-gray-500">{friend.email}</p>
+          <img
+            src={friend.picture}
+            className="w-24 h-24 rounded-full mb-3"
+          />
 
-        <p className="mt-2">
-          📅 {friend.days_since_contact} days since last contact
-        </p>
+          <h2 className="text-xl font-bold">{friend.name}</h2>
 
-        <p className="mt-2">
-          🎯 Goal: {friend.goal} days
-        </p>
+          <p className="text-sm text-gray-500 mb-2">
+            {friend.email}
+          </p>
 
-        <p className="mt-2">
-          ⏰ Next Contact: {friend.next_due_date}
-        </p>
+          <div className="badge badge-error mb-2">
+            Overdue
+          </div>
 
-        <p className="mt-4">{friend.bio}</p>
+          <div className="flex justify-center gap-2 flex-wrap mb-2">
+            {friend.tags.map((tag, i) => (
+              <span key={i} className="badge badge-outline">
+                {tag}
+              </span>
+            ))}
+          </div>
 
-        <div className="mt-4 flex justify-center gap-2 flex-wrap">
-          {friend.tags.map((tag, i) => (
-            <span key={i} className="badge badge-outline">
-              {tag}
-            </span>
-          ))}
+          <p className="italic text-sm text-gray-500">
+            {friend.bio}
+          </p>
+
+          {/* ACTION BUTTONS */}
+          <div className="mt-4 flex flex-col items-center gap-2 w-full">
+            <button className="btn btn-outline w-full max-w-xs">
+              ⏳ Snooze 2 Weeks
+            </button>
+            <button className="btn btn-outline w-full max-w-xs">
+              📁 Archive
+            </button>
+            <button className="btn btn-error w-full max-w-xs">
+              🗑 Delete
+            </button>
+          </div>
+
         </div>
 
+        {/* RIGHT SIDE */}
+        <div className="md:col-span-2 space-y-4">
+
+          {/* TOP STATS */}
+          <div className="grid grid-cols-3 gap-4">
+
+            <div className="card bg-base-200 p-4 text-center shadow">
+              <h2 className="text-2xl font-bold">
+                {friend.days_since_contact}
+              </h2>
+              <p className="text-sm text-gray-500">
+                Days Since Contact
+              </p>
+            </div>
+
+            <div className="card bg-base-200 p-4 text-center shadow">
+              <h2 className="text-2xl font-bold">
+                {friend.goal}
+              </h2>
+              <p className="text-sm text-gray-500">
+                Goal (Days)
+              </p>
+            </div>
+
+            <div className="card bg-base-200 p-4 text-center shadow">
+              <h2 className="text-md font-bold">
+                {friend.next_due_date}
+              </h2>
+              <p className="text-sm text-gray-500">
+                Next Due
+              </p>
+            </div>
+
+          </div>
+
+          {/* RELATIONSHIP GOAL */}
+          <div className="card bg-base-200 p-4 shadow">
+            <div className="flex justify-between items-center">
+              <h3 className="font-semibold">
+                Relationship Goal
+              </h3>
+              <button className="btn btn-xs">Edit</button>
+            </div>
+
+            <p className="mt-2 text-sm text-gray-600">
+              Connect every <b>{friend.goal} days</b>
+            </p>
+          </div>
+
+          {/* QUICK CHECK-IN */}
+          <div className="card bg-base-200 p-4 shadow">
+            <h3 className="font-semibold mb-3">
+              Quick Check-In
+            </h3>
+
+            <div className="grid grid-cols-3 gap-3">
+              <button 
+                className="btn"
+                onClick={() => handleAction("Call")}
+              >
+                📞 Call
+              </button>
+
+              <button 
+                className="btn"
+                onClick={() => handleAction("Text")}
+              >
+                💬 Text
+              </button>
+
+              <button 
+                className="btn"
+                onClick={() => handleAction("Video")}
+              >
+                🎥 Video
+              </button>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
   );
