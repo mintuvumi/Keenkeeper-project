@@ -67,7 +67,7 @@ export default function Timeline() {
             No timeline data found
           </p>
         )}
-
+      
       </div>
 
     </div>
