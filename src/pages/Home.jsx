@@ -51,10 +51,10 @@ export default function Home() {
 
   return (
     <>
-      {/* 🔥 Hero Section */}
+      {/* Hero Section */}
       <HeroSection />
 
-      {/* 🔥 Friends Section */}
+      {/* Friends Section */}
       <div className="px-4 md:px-6 lg:px-8 py-6">
 
         <div className="mb-6">
@@ -74,8 +74,8 @@ export default function Home() {
 
       </div>
 
-      {/* 🔥 Footer */}
-      <Footer />
+     
+      
     </>
   );
 }

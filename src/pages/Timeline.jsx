@@ -22,7 +22,7 @@ export default function Timeline() {
       {/* TITLE */}
       <h1 className="text-3xl font-bold mb-4">Timeline</h1>
 
-      {/* ✅ FILTER BOX (Shadow + সুন্দর UI) */}
+      {/* FILTER BOX */}
       <div className="mb-6">
         <select
           className="w-full px-4 py-3 rounded-xl border shadow-md focus:outline-none"

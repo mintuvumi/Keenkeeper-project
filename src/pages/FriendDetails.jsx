@@ -14,7 +14,7 @@ export default function FriendDetails() {
     return <h1 className="p-6">Friend Not Found</h1>;
   }
 
-  // ✅ handle click
+  // handle click
   const handleAction = (type) => {
     addEntry(type, friend.name);
     toast.success(`${type} added to timeline`);

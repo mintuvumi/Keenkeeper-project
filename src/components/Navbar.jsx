@@ -8,7 +8,7 @@ export default function Navbar() {
       : "btn btn-sm btn-ghost";
 
   return (
-    <div className="flex justify-between p-4 shadow">
+    <div className="sticky top-0 z-50 bg-base-100 flex justify-between p-4 shadow-lg">
       <h1 className="text-xl font-bold">KeenKeeper</h1>
 
       <div className="flex gap-2">
