@@ -3,12 +3,20 @@ import friends from "../data/friends";
 import { useTimeline } from "../context/TimelineContext";
 import { toast } from "react-toastify";
 
+// react icons
+import { FaClock, FaArchive, FaTrash } from "react-icons/fa";
+
+// assets icons
+import callIcon from "../assets/call.png";
+import textIcon from "../assets/text.png";
+import videoIcon from "../assets/video.png";
+
 export default function FriendDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { addEntry } = useTimeline();
 
-  const friend = friends.find(f => f.id === parseInt(id));
+  const friend = friends.find((f) => f.id === parseInt(id));
 
   if (!friend) {
     return <h1 className="p-6">Friend Not Found</h1>;
@@ -24,8 +32,8 @@ export default function FriendDetails() {
     <div className="p-6 max-w-5xl mx-auto">
 
       {/* Back Button */}
-      <button 
-        onClick={() => navigate(-1)} 
+      <button
+        onClick={() => navigate(-1)}
         className="btn btn-sm mb-6"
       >
         ← Back
@@ -63,17 +71,21 @@ export default function FriendDetails() {
             {friend.bio}
           </p>
 
-          {/* ACTION BUTTONS */}
+          {/*ACTION BUTTONS icons added) */}
           <div className="mt-4 flex flex-col items-center gap-2 w-full">
-            <button className="btn btn-outline w-full max-w-xs">
-              ⏳ Snooze 2 Weeks
+
+            <button className="btn btn-outline w-full max-w-xs flex gap-2 items-center justify-center">
+              <FaClock /> Snooze 2 Weeks
             </button>
-            <button className="btn btn-outline w-full max-w-xs">
-              📁 Archive
+
+            <button className="btn btn-outline w-full max-w-xs flex gap-2 items-center justify-center">
+              <FaArchive /> Archive
             </button>
-            <button className="btn btn-error w-full max-w-xs">
-              🗑 Delete
+
+            <button className="btn btn-error w-full max-w-xs flex gap-2 items-center justify-center">
+              <FaTrash /> Delete
             </button>
+
           </div>
 
         </div>
@@ -127,33 +139,38 @@ export default function FriendDetails() {
             </p>
           </div>
 
-          {/* QUICK CHECK-IN */}
+          {/* image icons */}
           <div className="card bg-base-200 p-4 shadow">
             <h3 className="font-semibold mb-3">
               Quick Check-In
             </h3>
 
             <div className="grid grid-cols-3 gap-3">
-              <button 
-                className="btn"
+
+              <button
+                className="btn flex flex-col gap-1 items-center"
                 onClick={() => handleAction("Call")}
               >
-                📞 Call
+                <img src={callIcon} className="w-6 h-6" />
+                Call
               </button>
 
-              <button 
-                className="btn"
+              <button
+                className="btn flex flex-col gap-1 items-center"
                 onClick={() => handleAction("Text")}
               >
-                💬 Text
+                <img src={textIcon} className="w-6 h-6" />
+                Text
               </button>
 
-              <button 
-                className="btn"
+              <button
+                className="btn flex flex-col gap-1 items-center"
                 onClick={() => handleAction("Video")}
               >
-                🎥 Video
+                <img src={videoIcon} className="w-6 h-6" />
+                Video
               </button>
+
             </div>
           </div>
 

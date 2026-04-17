@@ -25,7 +25,7 @@ export default function Stats() {
     { name: "Video", value: counts.Video, color: "#065f46" },
   ];
 
-  // 🔥 Fix: prevent all zero issue (makes equal circle look)
+  
   const total = data.reduce((sum, d) => sum + d.value, 0);
 
   const safeData =
@@ -63,7 +63,7 @@ export default function Stats() {
           </Pie>
         </PieChart>
 
-        {/* 🔥 Hover info (FIXED) */}
+        {/* Hover info  */}
         <div className="mt-4 text-center h-10">
           {activeIndex !== null ? (
             <div>
@@ -74,7 +74,7 @@ export default function Stats() {
                 {safeData[activeIndex].name}
               </p>
 
-              {/* 🔥 COUNT SHOW FIX */}
+              {/* COUNT SHOW FIX */}
               <p className="text-sm text-gray-600">
                 Clicked: {data[activeIndex].value}
               </p>

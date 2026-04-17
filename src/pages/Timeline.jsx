@@ -1,20 +1,29 @@
 import { useState } from "react";
 import { useTimeline } from "../context/TimelineContext";
 
+// Filter import
+import Filter from "../components/Filter";
+
+// icons
+import callIcon from "../assets/call.png";
+import textIcon from "../assets/text.png";
+import videoIcon from "../assets/video.png";
+
 export default function Timeline() {
   const { timeline } = useTimeline();
   const [filter, setFilter] = useState("All");
 
-  const getIcon = (type) => {
-    if (type === "Call") return "📞";
-    if (type === "Text") return "💬";
-    if (type === "Video") return "🎥";
+  // icon map
+  const iconMap = {
+    Call: callIcon,
+    Text: textIcon,
+    Video: videoIcon,
   };
 
   const filteredData =
     filter === "All"
       ? timeline
-      : timeline.filter(item => item.type === filter);
+      : timeline.filter((item) => item.type === filter);
 
   return (
     <div className="p-6 max-w-2xl mx-auto">
@@ -22,21 +31,10 @@ export default function Timeline() {
       {/* TITLE */}
       <h1 className="text-3xl font-bold mb-4">Timeline</h1>
 
-      {/* FILTER BOX */}
-      <div className="mb-6">
-        <select
-          className="w-full px-4 py-3 rounded-xl border shadow-md focus:outline-none"
-          value={filter}
-          onChange={(e) => setFilter(e.target.value)}
-        >
-          <option value="All">Filter timeline</option>
-          <option value="Call">📞 Call</option>
-          <option value="Text">💬 Text</option>
-          <option value="Video">🎥 Video</option>
-        </select>
-      </div>
+      {/* Custom Filter */}
+      <Filter filter={filter} setFilter={setFilter} />
 
-      {/* ✅ TIMELINE LIST */}
+      {/* TIMELINE LIST */}
       <div className="space-y-3">
 
         {filteredData.map((item) => (
@@ -44,10 +42,12 @@ export default function Timeline() {
             key={item.id}
             className="bg-base-200 p-4 rounded-xl shadow-sm flex items-start gap-4"
           >
-            {/* ICON LEFT */}
-            <div className="text-xl mt-1">
-              {getIcon(item.type)}
-            </div>
+            {/*ICON IMAGE */}
+            <img
+              src={iconMap[item.type]}
+              alt={item.type}
+              className="w-6 h-6 mt-1"
+            />
 
             {/* CONTENT */}
             <div className="text-left">
@@ -67,7 +67,7 @@ export default function Timeline() {
             No timeline data found
           </p>
         )}
-      
+
       </div>
 
     </div>

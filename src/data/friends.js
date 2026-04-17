@@ -32,7 +32,7 @@ const friends = [
     next_due_date: "2025-08-01"
   },
 
-  // 🔥 extra auto generate (total 12)
+  // extra auto generate (total 12)
   ...Array.from({ length: 9 }, (_, i) => ({
     id: i + 4,
     name: "Friend " + (i + 4),
