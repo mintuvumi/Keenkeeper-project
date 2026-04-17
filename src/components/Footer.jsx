@@ -1,15 +1,14 @@
-// import images
 import logo from "../assets/logo-xl.png";
 import instagram from "../assets/instagram.png";
 import facebook from "../assets/facebook.png";
-import twitter from "../assets/Twitter.png";
+import twitter from "../assets/twitter.png"; // ✅ fixed (lowercase)
 
 export default function Footer() {
   return (
     <footer className="bg-green-900 text-white py-10 md:py-12 mt-10">
       <div className="max-w-6xl mx-auto text-center px-4">
 
-        {/*Logo Image */}
+        {/* Logo */}
         <img
           src={logo}
           alt="KeenKeeper Logo"
@@ -21,31 +20,28 @@ export default function Footer() {
           Your personal shelf of meaningful connections. Browse, tend, and nurture the relationships that matter most.
         </p>
 
-        {/*Social Links */}
+        {/* Social Links */}
         <div className="mt-6">
           <p className="mb-2 text-sm">Social Links</p>
 
           <div className="flex justify-center gap-4">
 
-            {/* Instagram */}
             <img
               src={instagram}
               alt="Instagram"
-              className="w-8 h-8 md:w-10 md:h-10 cursor-pointer transition duration-300 hover:scale-110 hover:opacity-80"
+              className="w-8 h-8 md:w-10 md:h-10 cursor-pointer transition hover:scale-110 hover:opacity-80"
             />
 
-            {/* Facebook */}
             <img
               src={facebook}
               alt="Facebook"
-              className="w-8 h-8 md:w-10 md:h-10 cursor-pointer transition duration-300 hover:scale-110 hover:opacity-80"
+              className="w-8 h-8 md:w-10 md:h-10 cursor-pointer transition hover:scale-110 hover:opacity-80"
             />
 
-            {/* Twitter */}
             <img
               src={twitter}
               alt="Twitter"
-              className="w-8 h-8 md:w-10 md:h-10 cursor-pointer transition duration-300 hover:scale-110 hover:opacity-80"
+              className="w-8 h-8 md:w-10 md:h-10 cursor-pointer transition hover:scale-110 hover:opacity-80"
             />
 
           </div>

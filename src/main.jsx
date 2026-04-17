@@ -13,7 +13,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <BrowserRouter>
       <App />
 
-      {/* Toast system (global) */}
+      {/* Toast system  */}
       <ToastContainer position="top-right" autoClose={3000} />
     </BrowserRouter>
   </React.StrictMode>

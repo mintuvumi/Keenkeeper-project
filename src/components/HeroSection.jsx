@@ -18,7 +18,7 @@ export default function HeroSection() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 mt-6 md:mt-10">
 
           <div className="card bg-base-200 shadow-md p-4 md:p-6">
-            <h2 className="text-xl md:text-2xl font-bold text-gray-800">10</h2>
+            <h2 className="text-xl md:text-2xl font-bold text-gray-800">12</h2>
             <p className="text-xs md:text-sm text-gray-500 mt-1">Total Friends</p>
           </div>
 

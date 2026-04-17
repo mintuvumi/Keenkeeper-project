@@ -19,7 +19,7 @@ function App() {
       <div className="flex flex-col min-h-screen">
 
         {/* Navbar */}
-        <Navbar />
+        <Navbar /> 
 
         {/* Page Content */}
         <main className="flex-1">
@@ -29,13 +29,13 @@ function App() {
             <Route path="/stats" element={<Stats />} />
             <Route path="/friend/:id" element={<FriendDetails />} />
 
-            {/* 404 Route (MUST BE LAST) */}
+            {/* 404 Route) */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
 
         {/* Footer (All Pages) */}
-        <Footer />
+         <Footer /> 
 
       </div>
     </TimelineProvider>
